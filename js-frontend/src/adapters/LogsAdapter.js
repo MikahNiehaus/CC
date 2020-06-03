@@ -12,6 +12,7 @@ class LogsAdapter {
         const log = {
             body: value,
         }
+   
         return fetch(this.baseUrl, {
             method: 'POST',
             headers: {

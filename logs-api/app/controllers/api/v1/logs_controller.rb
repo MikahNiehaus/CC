@@ -12,23 +12,30 @@ class Api::V1::LogsController < ApplicationController
     end
 
     def create
-        @log = Log.create(log_params)
+        # binding.pry
+        @log = Log.create(params[:log][:body])
+      
+      
         render json: @log, status: 200
     end
  
     def update
         @log = Log.find(params[:id])
-        @log.update(log_params)
+        @log.update(params[:log][:body])
         render json: @log, status: 200
     end
 
     def destroy
         @log = Log.find(params[:id])
         @log.delete
+        
         render json: {log_id: @log.id}
-
+    end
     private
 
     def log_params
-        params.reqire(:log).permit(:title, :text, :created_at)
+        params.permit(:log)
+        # binding.pry
+        return true
+end
 end

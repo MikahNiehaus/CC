@@ -13,28 +13,29 @@ class Logs{
       this.logForm.addEventListener('submit', this.createLog.bind(this))
     }
     createLog(e){
-      console.log(this)
-      console.log('log is being created')
       e.preventDefault()
       const value = this.newLogBody.value
+
       this.adapter.createLog(value).then(log => {
-        this.logs.push(new Log(log))
+        this.logs.push(new Log(log, value))
         this.render()
+        //this.newLogBody.value = Log.body
+        this.newLogBody.value = ''
       })
     }
     fetchAndLoadLogs(){
         this.adapter
         .getLogs()
         .then(logs => {
-        logs.forEach(log => this.logs.push(log))
-      //  return console.log(logs)
+        logs.forEach(log => this.logs.push(new Log(log,value)))
+    
         })
         .then(() => {
             this.render()
         })
     }
     render(){
-      const logsContainer.innerHTML = this.logs.map(log => log.renderLi()).join('')
+      this.logsContainer.innerHTML = this.logs.map(log => log.renderLi()).join('')
      
     }
     

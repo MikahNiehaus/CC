@@ -1,6 +1,13 @@
 class Log {
-    constructor(logJSON) {
+
+    constructor(logJSON, info) {
+        this.data = logJSON;
         this.id = logJSON.id
-        this.body = noteJSON.body
+        this.myinfo = info
+        console.log(info)
+    }
+    renderLi() {
+        console.log(this.data)
+        return (`<div>${JSON.stringify(this.myinfo)}</div>`);
     }
 }
