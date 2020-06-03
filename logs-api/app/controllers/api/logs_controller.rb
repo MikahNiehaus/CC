@@ -15,7 +15,7 @@ class Api::V1::LogsController < ApplicationController
         @log = Log.create(log_params)
         render json: @log, status: 200
     end
-
+ 
     def update
         @log = Log.find(params[:id])
         @log.update(log_params)
