@@ -7,7 +7,8 @@ class Log {
         console.log(info)
     }
     renderLi() {
-        console.log(this.data)
-        return (`<div>${JSON.stringify(this.myinfo)}</div>`);
+        
+        return (`<li data-logId=${this.id}>${JSON.stringify(this.myinfo)}</li>`);
+       
     }
 }
