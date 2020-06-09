@@ -1,5 +1,5 @@
-class App{
-    constructor(){
-        this.logs = new Logs()
-    }
-}
+// class eApp{
+//     constructor(){
+//         this.logs = new Logs()
+//     }
+// }

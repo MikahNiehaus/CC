@@ -1,22 +1,59 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Logs</title> 
     <link rel="stylesheet" href="https://afeld.github.io/emoji-css/emoji.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+ 
   </head>
-  <body>
+  <body onload="loadFunction()">
     <div class="container">
-        <h2>Log</h2> <p id="number"></p> logs
+        <h2>Log</h2> 
        
     <div id="new-log-container">
+       <button id="logButton" onclick="myFunction()">Add Log</button>
+      <button onclick="EditFunction(this);">Disable editable!</button>
+      <button onclick="DeleteFunction()">Remove selected Log</button>
       <form id="new-log-form">
-          <input type="text" name="log-body" id="new-log-body"/>
-          <input type="submit" value="Log"/>
+       
+        <p id="log_number"></p> logs 
+       
+         <div><input type="text" name="log-title" id="new-log-title"/> </div> 
+            
+          <input type="text" name="log-body"  width="100" height="200" id="new-log-body"/>
+         
       </form>
+
+
+
+<!-- 
+      <select id = "ddlFruits"></select>
+      <hr />
+      Text: <input type="text" id = "txtText" />
+      Value: <input type="text" id = "txtValue" />
+      <input type="button" id = "btnAdd" value = "Add" onclick = "Add()" /> -->
+
+
+     <form>
+      <select  id="mySelect" size="10">
+      
+      </select>
+    </form>
+    <br>
+
+
+
+
+
+
+
+
+
+
+<!-- 
      </div>
      <div id="logs-content">
       <div id="logs-container">
@@ -28,12 +65,35 @@
     </div>
     </div>
   </div>
+
+
+
+  <div class="container">
+    <div id="new-note-container">
+      
+    </div>
+    <div id="notes-content">
+      <div id="notes-container">
+
+      </div>
+      <div id="note-show">
+
+      </div>
+    </div>
+  </div>
+
+  <p id="demo"></p> -->
+
+
+      <script src="src/index.js"></script>
+      <script src="src/adapters/LogsAdapter.js"></script>
+      <script src="src/components/logs.js"></script>
 <!-- loads components -->
-    <script type="text/javascript" src="src/components/log.js"></script>
-    <script src="src/components/logs.js"></script>
+    <!-- <script type="text/javascript" src="src/components/log.js"></script>
+    
     <script src="src/components/app.js"></script>
-    <script src="src/adapters/LogsAdapter.js"></script>
-    <script src="src/index.js"></script>
+    
+    <script src="src/index.js"></script> -->
   </body>
 
 </html>
