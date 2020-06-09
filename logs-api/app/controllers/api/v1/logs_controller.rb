@@ -2,7 +2,7 @@
 class Api::V1::LogsController < ApplicationController
     def index
     @logs = Log.all
-    # binding.pry
+    #  binding.pry
     #give json repersentation
     render json: @logs, status: 200
     end
@@ -10,12 +10,12 @@ class Api::V1::LogsController < ApplicationController
     def show
      
         @log = Log.find(params[:id])
-        # binding.pry 
+        #  binding.pry 
         render json: @log, status: 200
     end
 
     def create
-        # binding.pry
+        #  binding.pry
         @log = Log.create(body: params[:_json])
 
         render json: @log, status: 200
