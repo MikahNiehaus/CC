@@ -13,17 +13,17 @@
         <h2>Log</h2> 
        
     <div id="new-log-container">
-       <button id="logButton" onclick="myFunction()">Add Log</button>
-      <button onclick="EditFunction(this);">Disable editable!</button>
+    
+      
       <button onclick="DeleteFunction()">Remove selected Log</button>
       <form id="new-log-form">
        
         <p id="log_number"></p>
         <p hidden="true" id="log_id"></p>
-         <div><input type="text" name="log-title" id="new-log-title"/> </div> 
+     
             
-          <input type="text" name="log-body"  width="100" height="200" id="new-log-body"/>
-         
+          <input type="text" name="log-body"  width="100" height="200" id="new-log-body"/>   <button id="logButton" onclick="myFunction()">Add Log</button>
+          <div> <input type="text" name="log-title" id="edit-log-body"/>  <button onclick="EditFunction();">Edit Log</button></div>
       </form>
 
 
@@ -37,7 +37,7 @@
 
 
      
-      <select  id="mySelect" size="10">
+      <select onclick="showLogToEdit()" id="mySelect" size="10">
      
       </select>
  

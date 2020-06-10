@@ -6,7 +6,8 @@ const load = new LogsAdapter();
 load.getLogs();
 }
 function myFunction() {
-    const input = document.getElementById("new-log-title").value + "\n\n" + document.getElementById("new-log-body").value + "\nTime stamp " + Date.now()
+  const now = new Date();
+    const input = document.getElementById("new-log-body").value + "\n(Hour " + now.getHours()+")";
     const log = new LogsAdapter();
   log.createLog(input);
   console.log(log.getLogs())
@@ -14,4 +15,12 @@ function myFunction() {
 
 
   }
-  
+  function showLogToEdit(){
+    var e = document.getElementById("mySelect");
+    var body = e.options[e.selectedIndex].label;
+    var id = e.options[e.selectedIndex].value;
+    document.getElementById("edit-log-body").value = body;
+    document.getElementById("edit-log-body").name = id;
+console.log("[selected item] body: " + body + " id: " + document.getElementById("edit-log-body").name);
+
+  }

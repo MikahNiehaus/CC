@@ -37,16 +37,7 @@ class LogsAdapter {
       );
       
 
-      // return fetch(this.baseUrl).then((response) => { 
-      //      return response.json().then((data) => {
 
-      //      data
-
-               
-      //      }).catch((err) => {
-      //          console.log(err);
-      //      }) 
-      //  });
     }
 
   
@@ -65,8 +56,8 @@ class LogsAdapter {
         const log = {
             body: value,
         }
-        return fetch(`${this.baseUrl}/id`, {
-            method: 'PATCH',
+        fetch(this.baseUrl + '/' + id, {
+          method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                     },    
@@ -77,51 +68,3 @@ class LogsAdapter {
 
 }
 
-
-
-
-// //talks to api
-// class rLogsAdapter {
-//     constructor(){
-//         // 3rd party api
-//         this.baseUrl = 'http://localhost:3000/api/v1/logs'
-//     }
-
-//     getLogs() {
-//         return fetch(this.baseUrl).then(res => res.json())
-        
-//     }
-//     createLog(value,time){
-//         const log = {
-//             body: value,
-//             created_at: time,
-//         }
-//         console.log('TEST '+ log.created_at)
-//         return fetch(this.baseUrl, {
-//             method: 'POST',
-//             headers: {
-//                 'content-type': 'application/json',
-//                     },    
-                    
-//           body: JSON.stringify({ log }),
-          
-//          }).then(res => res.json())
-//         //  console.log(log)
-//     }
-//     updateLog(value, id){
-//         const log = {
-//             body: value,
-//         }
-//         return fetch(`${this.baseUrl}/id`, {
-//             method: 'PATCH',
-//             headers: {
-//                 'content-type': 'application/json',
-//                     },    
-                    
-//           body: JSON.stringify({ log }),
-//          }).then(res => res.json())
-//     }
-// }
-
-// // adapter = new LogsAdapter()
-// // const logs = adapter.getLogs()
