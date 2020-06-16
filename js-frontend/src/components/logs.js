@@ -6,14 +6,23 @@ class Logs {
 
 
  removeOptions(selectElement) {
+   //var — The most common variable. Can be reassigned but only accessed
+// within a function. Variables defined with var move to the top when
+// code is executed
     var i, L = selectElement.options.length - 1;
     for(i = L; i >= 0; i--) {
        selectElement.remove(i);
 
     }
+    // for (before loop; condition for loop; execute after loop) {
+    //   // what to do during the loop
+    //  } 
  }
 
  render(t,y) { 
+    //var — The most common variable. Can be reassigned but only accessed
+// within a function. Variables defined with var move to the top when
+// code is executed
   var x = document.getElementById("mySelect");
   var option = document.createElement("option");
  // const logsAdapter = new LogsAdapter;
@@ -44,6 +53,5 @@ console.log(result)
 
 logsAdapter.deleteLog(result)
   x.remove(result);
- // document.getElementById("log_number").innerHTML = logsAdapter.getLogs();
   location.reload();
 }

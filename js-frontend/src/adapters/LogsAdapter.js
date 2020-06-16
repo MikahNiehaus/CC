@@ -1,13 +1,21 @@
 class LogsAdapter {
+  //The constructor property returns a reference to the Object constructor function that created the instance object.
+  //  Note that the value of this property is a reference to the function itself, not a string containing the function's name.
+  //  The value is only read-only for primitive values such as 1, true and "test".
     constructor()
     {
-     
+     //the url used to conect to backend
      this.baseUrl = 'http://localhost:3000/api/v1/logs'
     }   
     
     getLogs() {
     
         const logs = new Logs;
+        // The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. 
+        // It also provides a global fetch() method
+        // The Promise returned from fetch() won’t reject on HTTP error status 
+        // fetch() won't receive or send cookies;
+        // Here we are fetching a JSON file across the network, The simplest use of fetch() 
     fetch(this.baseUrl).then((response) => { 
          response.json().then((data) => {
             var i;
@@ -27,7 +35,11 @@ class LogsAdapter {
     }
   
     deleteLog(item){
-
+        // The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. 
+        // It also provides a global fetch() method
+        // The Promise returned from fetch() won’t reject on HTTP error status 
+        // fetch() won't receive or send cookies;
+        // Here we are fetching a JSON file across the network, The simplest use of fetch() 
       fetch(this.baseUrl + '/' + item, {
         method: 'delete'
       }).then(response =>
@@ -42,7 +54,11 @@ class LogsAdapter {
 
   
     createLog(input){
-             
+                    // The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. 
+        // It also provides a global fetch() method
+        // The Promise returned from fetch() won’t reject on HTTP error status 
+        // fetch() won't receive or send cookies;
+        // Here we are fetching a JSON file across the network, The simplest use of fetch()  
         let response = fetch(this.baseUrl, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},    
@@ -53,6 +69,11 @@ class LogsAdapter {
        
     }
     updateLog(value, id){
+              // The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. 
+        // It also provides a global fetch() method
+        // The Promise returned from fetch() won’t reject on HTTP error status 
+        // fetch() won't receive or send cookies;
+        // Here we are fetching a JSON file across the network, The simplest use of fetch() 
         const log = {
             body: value,
         }
