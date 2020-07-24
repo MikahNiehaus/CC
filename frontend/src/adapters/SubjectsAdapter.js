@@ -37,7 +37,7 @@ while (i<data.length){
   let option = document.createElement("option");
  
   option.text =  data[i]["body"].toString();
-
+  option.id =  data[i]["id"].toString();
   x.add(option, x[0]);
  i += 1;
 }

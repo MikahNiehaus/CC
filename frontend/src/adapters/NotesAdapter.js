@@ -4,54 +4,6 @@ class NotesAdapter {
    
    this.baseUrl = 'http://localhost:3000/api/v1/notes'
   }   
-  
-  // getNotes() {
-  
-  //     const notes = new Notes;
-  // fetch(this.baseUrl).then((response) => { 
-  //      response.json().then((data) => {
-  //       console.note(data);
-  //         let i;
-  //         let text = ""; 
-  //         let ary = [];
-  //        if (data.length > 0){
-  //         const output = data[data.length-1].id
-  //        //  document.getElementById("note_number").innerHTML = data.length;
-  //        document.getElementById("note_id").innerHTML = output;
-  //         }
-  //         for (i = 0; i < data.length; i++) {
-  //           if (data[i]["department_id"] == sessionStorage.getItem("Id")){
-  //             text = data[i]["_json"].toString();
-  //             console.note(data);
-  //             notes.render(text,data[i].id);
-  //             ary.push([text,data[i].id]);
-  //         }
-  //           }
-           
-  //            console.note("send off " + ary);
-  //           // sessionStorage.getItem("Notes").clear();
-  //           // sessionStorage.setItem("Notes", ary);
-            
-  //         return null
-  //     }).catch((err) => {
-  //         console.note(err);
-  //     }) 
-  // });
-  // }
-
-  // deleteNote(item){
-
-  //   fetch(this.baseUrl + '/' + item, {
-  //     method: 'delete'
-  //   }).then(response =>
-  //     response.json().then(json => {
-  //       return json;
-  //     })
-  //   );
-    
-
-  // }
-
 
 
   createNote(input, id){
@@ -73,7 +25,7 @@ class NotesAdapter {
   }
   fetch(this.baseUrl, configObj)
     .then(res => res.json())
-   // .then((resObj) => this.sanitizeAndAddGranola(resObj.data))
+   .then((resObj) => this.sanitizeAndAddGranola(resObj.data))
  
     }
 
@@ -89,11 +41,13 @@ class NotesAdapter {
   
     let test = data[i]["subject_id"];
     if (data[i]["subject_id"] == id){
-       resolt +=  data[i]["body"].toString() + "\n"; 
+       resolt +=  data[i]["body"].toString() + "\n\n"; 
     }
     i += 1;
   }
   copyStringToClipboard(resolt);    
+  window.open('https://www.office.com/launch/word?auth=1', '_blank');
+
           }).catch((err) => {
               console.log(err);
           }) 
