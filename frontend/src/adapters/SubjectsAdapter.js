@@ -1,6 +1,16 @@
+// A Promise is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+// A Promise is in one of these states:
+
+// pending: initial state, neither fulfilled nor rejected.
+// fulfilled: meaning that the operation completed successfully.
+// rejected: meaning that the operation failed.
+
 class SubjectsAdapter {
   constructor() {
-
+    // The constructor method is a special method for creating and initializing an object created with a class. 
+    // There can only be one special method with the name "constructor" in a class. 
+    // A SyntaxError will be thrown if the class contains more than one occurrence of a constructor method.
     this.baseUrl = 'http://localhost:3000/api/v1/subjects'
   }
 
@@ -58,7 +68,6 @@ class SubjectsAdapter {
       .then((response) => {
         response.json().then((data) => {
           console.log(data["id"]);
-          // .then((resObj) => this.sanitizeAndAddGranola(resObj.data))
           let x = document.getElementById("container");
           let option = document.createElement("option");
           option.text = input;
@@ -98,3 +107,8 @@ class SubjectsAdapter {
 
 
 
+// What is JSON?
+// JSON stands for JavaScript Object Notation
+// JSON is a lightweight data interchange format
+// JSON is language independent *
+// JSON is "self-describing" and easy to understand
