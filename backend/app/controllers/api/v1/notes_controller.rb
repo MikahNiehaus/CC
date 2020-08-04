@@ -1,3 +1,8 @@
+# // What is JSON?
+# // JSON stands for JavaScript Object Notation
+# // JSON is a lightweight data interchange format
+# // JSON is language independent *
+# // JSON is "self-describing" and easy to understand
 class Api::V1::NotesController < ApplicationController
     def index
         #  binding.pry

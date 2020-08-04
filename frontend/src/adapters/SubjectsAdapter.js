@@ -14,9 +14,9 @@ class SubjectsAdapter {
     this.baseUrl = 'http://localhost:3000/api/v1/subjects'
   }
 
-  deleteSubject(item) {
+  deleteSubject(id) {
 
-    fetch(this.baseUrl + '/' + item, {
+    fetch(this.baseUrl + '/' + id.toString(), {
       method: 'delete'
     }).then(response =>
       response.json().then(json => {

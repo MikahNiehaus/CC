@@ -75,14 +75,15 @@ subjectButton.onclick = (e) => {
 // remove selected option
 btnRemove.onclick = (e) => {
   e.preventDefault();
-// The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const x = document.getElementById("container").value;
-  if (x == "") {
+  const selector = document.getElementById('container');
+  if (selector.selectedIndex == -1) {
     alert('Please select somthing.');
     return;
   }
+// The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  const id = selector[selector.selectedIndex].id;
   const subjects = new SubjectsAdapter();
-  subjects.deleteSubject(x);
+  subjects.deleteSubject(id);
   say("Subject Deleted!")
 };
 
@@ -101,15 +102,16 @@ function onContainerClick() {
 function EditSubjectFunction() {
   
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const x = document.getElementById("container").value;
-  if (x == "") {
+  const selector = document.getElementById("container");
+  if (selector.value == "") {
     alert('Please select somthing.');
     return;
   }
+  const id = selector[selector.selectedIndex].id;
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   const y = document.getElementById("edit-subject-body").value;
   const subjects = new SubjectsAdapter();
-  subjects.updateSubject(y, x);
+  subjects.updateSubject(y, id);
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   document.getElementById("edit-subject-body").value = "";
   say("Subject Edited!")

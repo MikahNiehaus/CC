@@ -1,3 +1,9 @@
+# // What is JSON?
+# // JSON stands for JavaScript Object Notation
+# // JSON is a lightweight data interchange format
+# // JSON is language independent *
+# // JSON is "self-describing" and easy to understand
+
 class Api::V1::SubjectsController < ApplicationController
     def index
         # binding.pry
@@ -27,7 +33,7 @@ class Api::V1::SubjectsController < ApplicationController
  
     def update
         #  binding.pry
-        @subject = Subject.find_by(body: params[:id])
+        @subject = Subject.find_by(id: params[:id])
         @subject.update(subject_params)
       
         @subject.save
@@ -38,7 +44,7 @@ class Api::V1::SubjectsController < ApplicationController
 
     def destroy
         #  binding.pry
-        @subject = Subject.find_by(body: params[:id])
+        @subject = Subject.find_by(id: params[:id])
         @subject.delete
          
         render json: {subject_id: @subject.id}
