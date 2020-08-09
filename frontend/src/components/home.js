@@ -41,13 +41,14 @@ function addCCFunction() {
  
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   const y = document.getElementById("container").options;
-  let id = y[x].id;
+  let id = y[x].id; //0
   //const y = document.getElementById("edit-subject-body").value;
   const notes = new NotesAdapter();
   notes.createNote(cc_body, id);
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   document.getElementById("cc-body").value = "";
-  say("CC added!")
+  const speek = new Speek("CC added!");
+  speek.render();
 }
 
 
@@ -69,7 +70,8 @@ subjectButton.onclick = (e) => {
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   subjects.createSubject(document.getElementById("subject-body").value);
   document.getElementById("subject-body").value = "";
-  say("Subject Created!")
+  const speek = new Speek("Subject Created!");
+  speek.render();
 };
 
 // remove selected option
@@ -84,7 +86,8 @@ btnRemove.onclick = (e) => {
   const id = selector[selector.selectedIndex].id;
   const subjects = new SubjectsAdapter();
   subjects.deleteSubject(id);
-  say("Subject Deleted!")
+  const speek = new Speek("Subject Deleted!");
+  speek.render();
 };
 
 
@@ -114,5 +117,26 @@ function EditSubjectFunction() {
   subjects.updateSubject(y, id);
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   document.getElementById("edit-subject-body").value = "";
-  say("Subject Edited!")
+  const speek = new Speek("Subject Edited!");
+  speek.render();
+ 
+}
+
+class Speek {
+
+  constructor(text){
+    this.text = text;
+  }
+
+  render(){
+      console.log("Somthing has been sayed")
+      let say = this.text;
+      document.getElementById("info").innerHTML = say;
+      setTimeout(function(){
+   greet();
+      }, 3000);
+      return (say)
+    }
+
+
 }

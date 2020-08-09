@@ -17,21 +17,10 @@ greet();
   
    }); 
 
-function say(text){
-    // A browser built-in XMLHttpRequest object (to request data from a web server)
-   const xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-    
-       document.getElementById("info").innerHTML =
-       text;
-     
-   };
-   xhttp.open("GET", "ajax_info.txt", true);
-   xhttp.send();
-   setTimeout(function(){
-greet();
-   }, 3000);
-}
+// function say(text){
+//    const speek = new Speek;
+//    speek(text);
+// }
 
 function greet(){
 
@@ -47,14 +36,13 @@ function greet(){
    else if (hrs >= 17 && hrs <= 24)
        greet = 'Good Evening';
        // A browser built-in XMLHttpRequest object (to request data from a web server)
-       const xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = function() {
+   
       
          document.getElementById("info").innerHTML =
          greet;
-       
-     };
-     xhttp.open("GET", "ajax_info.txt", true);
-     xhttp.send();
+  
 }
 
+
+  
+  

@@ -17,7 +17,8 @@ class SubjectsAdapter {
   deleteSubject(id) {
 
     fetch(this.baseUrl + '/' + id.toString(), {
-      method: 'delete'
+      method: 'delete' // requests *GET, POST, PUT, DELETE, etc.
+      //it then goes to routes
     }).then(response =>
       response.json().then(json => {
         return json;
@@ -31,27 +32,21 @@ class SubjectsAdapter {
   getSubjects() {
 
     let i = 0;
-
+// requests *GET, POST, PUT, DELETE, etc. Get is defalt
     fetch(this.baseUrl).then((response) => {
+      //it then goes to routes
       response.json().then((data) => {
         console.log(data);
-
-        while (i < data.length) {
-          let x = document.getElementById("container");
-          let option = document.createElement("option");
-
-          option.text = data[i]["body"].toString();
-          option.id = data[i]["id"].toString();
-          x.add(option, x[0]);
-          i += 1;
-        }
-
+        data.forEach(addSubject);
       }).catch((err) => {
         console.log(err);
       })
     });
 
   }
+
+
+
   createSubject(input) {
     let myJson = ({
       subject: {
@@ -60,20 +55,16 @@ class SubjectsAdapter {
       }
     })
     let configObj = {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accepts": "application/json" },
+      method: "POST", // requests *GET, POST, PUT, DELETE, etc.
+      headers: { "Content-Type": "application/json", "Accepts": "application/json" },    // 'Content-Type': 'application/x-www-form-urlencoded',
       body: JSON.stringify(myJson)
     }
     fetch(this.baseUrl, configObj)
+    //it then goes to routes
       .then((response) => {
         response.json().then((data) => {
-          console.log(data["id"]);
-          let x = document.getElementById("container");
-          let option = document.createElement("option");
-          option.text = input;
-          option.id = data["id"];
-          x.add(option, x[0]);
-
+          console.log(data);
+          data.forEach(addSubject);
         }).catch((err) => {
           console.log(err);
         })
@@ -85,12 +76,14 @@ class SubjectsAdapter {
       body: value,
     }
     fetch(this.baseUrl + '/' + id, {
-      method: 'PATCH',
+      method: 'PATCH',// requests *GET, POST, PUT, DELETE, etc.
       headers: {
         'content-type': 'application/json',
+           // 'Content-Type': 'application/x-www-form-urlencoded',
       },
 
       body: JSON.stringify({ subject }),
+      //it then goes to routes
     }).then(res => res.json())
     const x = document.getElementById("container");
     let index = x.selectedIndex;
@@ -105,7 +98,45 @@ class SubjectsAdapter {
 
 
 
+function addSubject(data) {
+  const newSubject = new Subject(data);//data = json // do data .ForEach
+  const element = newSubject.render()
+  let x = document.getElementById("container");
+  let option = document.createElement("option");
+  option.text = element["subject"]["body"];
+  option.id = element["subject"]["id"];
+  x.add(option, x[0]);
+}
 
+class Subject {
+ // A class is a type of function, but instead of using the keyword function to initiate it,
+  // we use the keyword class, and the properties are assigned inside a constructor() method.
+  constructor(subject){
+    this.id = subject.id;
+    this.body = subject.body;
+ //   The constructor method is special, it is where you initialize properties, 
+  //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
+  //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+  }
+   // Adding a method to the constructor
+  render(){
+    console.log("Object has been created")
+    let element = {
+      subject: {
+        body: this.body,
+        id: this.id
+      }
+    }
+    return (element)
+  }
+
+
+}
+ 
+ //work on tentincal langwige go back //sit wit
+ //requst
+ //nest json
+ //Nancy Noyes
 
 // What is JSON?
 // JSON stands for JavaScript Object Notation

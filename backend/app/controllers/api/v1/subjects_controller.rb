@@ -5,58 +5,60 @@
 # // JSON is "self-describing" and easy to understand
 
 class Api::V1::SubjectsController < ApplicationController
+    # exposes to veiw
     def index
-        # binding.pry
+    # @ signify instance variables, which are available in all other methods of the instance object.
+    #  If in a controller you have
     @subjects = Subject.all
-    
-    #give json repersentation
-    render json: @subjects, status: 200
+    # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.
+    render json: @subjects.as_json(only: [:id, :body]), status: 200
     # JSON is language independent 
     end
 
     def show
-    #    binding.pry 
+        # @ signify instance variables, which are available in all other methods of the instance object.
+        #  If in a controller you have
         @subject = Subject.find(params[:id])
-          
-        render json: @subject, status: 200
+        # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.
+        render json: @subjects.as_json(only: [:id, :body]), status: 200
         # JSON is language independent 
     end
 
     def create
-        #  binding.pry
+        # @ signify instance variables, which are available in all other methods of the instance object.
+        #  If in a controller you have
         @subject = Subject.create(subject_params)
-       
-           
-        render json: @subject, status: 200
+        # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.
+        render json: @subjects.as_json(only: [:id, :body]), status: 200
         # JSON is language independent 
     end
  
     def update
-        #  binding.pry
+        # @ signify instance variables, which are available in all other methods of the instance object.
+        #  If in a controller you have
         @subject = Subject.find_by(id: params[:id])
         @subject.update(subject_params)
-      
         @subject.save
-          
-        render json: @subject, status: 200
+        # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.  
+        render json: @subjects.as_json(only: [:id, :body]), status: 200
         # JSON is language independent 
     end
 
     def destroy
-        #  binding.pry
+        # @ signify instance variables, which are available in all other methods of the instance object.
+        #  If in a controller you have
         @subject = Subject.find_by(id: params[:id])
         @subject.delete
-         
         render json: {subject_id: @subject.id}
         # JSON is language independent 
     end
     private
 
     def subject_params
-        #   binding.pry
-
-        # parmas =  params[:body]
-        # params.permit(:subject, :body)
+        # Allows you to choose which attributes should be permitted for mass updating and thus prevent accidentally 
+        #  exposing that which shouldn't be exposed. Provides two methods for this purpose: require and permit.
+        #  The former is used to mark parameters as required. The latter is used to set the parameter as permitted and limit 
+        #  which attributes should be allowed for mass updating.
         params.require(:subject).permit(:body)
 end
 end

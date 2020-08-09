@@ -24,26 +24,25 @@ class NotesAdapter {
     let configObj = {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accepts": "application/json" },
+         // 'Content-Type': 'application/x-www-form-urlencoded',
       body: JSON.stringify(data)
     }
     fetch(this.baseUrl, configObj)
+    //it then goes to routes
       .then(res => res.json())
       .then((resObj) => this.sanitizeAndAddGranola(resObj.data))
   }
 
   getNotes(id) {
-    let i = 0;
+   // let i = 0;
     let resolt = "";
+    // requests *GET, POST, PUT, DELETE, etc. 
     fetch(this.baseUrl).then((response) => {
+      //it then goes to routes
       response.json().then((data) => {
         console.log(data);
-
-        while (i < data.length) {
-          if (data[i]["subject_id"] == id) {
-            resolt += data[i]["body"].toString() + "\n\n";
-          }
-          i += 1;
-        }
+        data.forEach((item) => addNoteFunction(item, id));
+      
         copyStringToClipboard(resolt);
         window.open('https://www.office.com/launch/word?auth=1', '_blank');
       }).catch((err) => {
@@ -55,8 +54,40 @@ class NotesAdapter {
 
 
 }
+function addNoteFunction(item, id) {
+  const note = new Note(item);
+  let element = note.render();
+  if (element["subject_id"] == id) {
+    resolt += element["body"].toString() + "\n\n";
+  }
+ 
+}
+class Note {
+  // A class is a type of function, but instead of using the keyword function to initiate it,
+  // we use the keyword class, and the properties are assigned inside a constructor() method.
+  constructor(note){
+    this.id = note.id;
+    this.subject_id = note.subject_id;
+    this.body = note.body;
+  //   The constructor method is special, it is where you initialize properties, 
+  //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
+  //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+   }
+   // Adding a method to the constructor
+  render(){
+    console.log("note has been created")
+    let element = {
+      note: {
+        body: this.body,
+        id: this.id,
+        subject_id: this.subject_id
+      }
+    }
+    return (element)
+  }
 
 
+}
 // What is JSON?
 // JSON stands for JavaScript Object Notation
 // JSON is a lightweight data interchange format
