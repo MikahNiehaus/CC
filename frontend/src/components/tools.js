@@ -4,16 +4,10 @@
 // Because of this, we cannot change constant primitive values, but we can change the properties of constant objects. (Array example)
 //#new/instance
 // An “instance” means a reference to an “object” created by “new” or the equivalent.
-
-
-// function say(text) {
-
-//     document.getElementById("info").innerHTML = text;
-//     //The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
-//     setTimeout(function () {
-//         greet();
-//     }, 3000);
-// }
+//#functiuon
+// A function in JavaScript is similar to a procedure—a set of statements that performs a task or calculates a value,
+//  but for a procedure to qualify as a function, it should take some input and return an output where there is some obvious
+//   relationship between the input and the output. To use a function, you must define it somewhere in the scope from which you wish to call it.
 
 function greet() {
 //Creates a JavaScript Date instance that represents a single moment in time in a platform-independent format. 
@@ -43,11 +37,24 @@ function editBody(body) {
     return resolt;
 }
 
-function copyStringToClipboard(str) {
-    // Create new element
+
+
+class CopyStringToClipboard {
+    // A class is a type of function, but instead of using the keyword function to initiate it,
+    // we use the keyword class, and the properties are assigned inside a constructor() method.
+     constructor(string){
+       // this refers to the global object whether in strict mode or not.
+       this.string = string;
+     //   The constructor method is special, it is where you initialize properties, 
+     //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
+     //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+     }
+     // Adding a method to the constructor
+     render(){
+        // Create new element
     const el = document.createElement('textarea');
     // Set value (string to be copied)
-    el.value = str;
+    el.value = this.string;
     // Set non-editable to avoid focus and move outside of view
     el.setAttribute('readonly', '');
     el.style = { position: 'absolute', left: '-9999px' };
@@ -61,5 +68,7 @@ function copyStringToClipboard(str) {
     //says "CC added to Clipboard!"
     const speek = new Speek("CC added to Clipboard!");
     speek.render();
-
-}
+     }
+   
+   
+   }

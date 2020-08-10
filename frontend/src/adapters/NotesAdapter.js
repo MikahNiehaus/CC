@@ -27,23 +27,19 @@ class NotesAdapter {
          // 'Content-Type': 'application/x-www-form-urlencoded',
       body: JSON.stringify(data)
     }
-    fetch(this.baseUrl, configObj)
     //it then goes to routes
+    fetch(this.baseUrl, configObj)
       .then(res => res.json())
       .then((resObj) => this.sanitizeAndAddGranola(resObj.data))
   }
-
+  
   getNotes(id) {
-   // let i = 0;
-    let resolt = "";
     // requests *GET, POST, PUT, DELETE, etc. 
+    //it then goes to routes
     fetch(this.baseUrl).then((response) => {
-      //it then goes to routes
       response.json().then((data) => {
         console.log(data);
         data.forEach((item) => addNoteFunction(item, id));
-      
-        copyStringToClipboard(resolt);
         window.open('https://www.office.com/launch/word?auth=1', '_blank');
       }).catch((err) => {
         console.log(err);
@@ -55,17 +51,25 @@ class NotesAdapter {
 
 }
 function addNoteFunction(item, id) {
+  let resolt = "";
   const note = new Note(item);
   let element = note.render();
-  if (element["subject_id"] == id) {
-    resolt += element["body"].toString() + "\n\n";
+  let subject_id = element["note"]["subject_id"];
+  let body = element["note"]["body"];
+  if (subject_id == id) {
+    resolt += body + "\n\n";
+
+    const copyStringToClipboard = new CopyStringToClipboard(resolt);
+    copyStringToClipboard.render();
   }
  
 }
+
 class Note {
   // A class is a type of function, but instead of using the keyword function to initiate it,
   // we use the keyword class, and the properties are assigned inside a constructor() method.
   constructor(note){
+    // this refers to the global object whether in strict mode or not.
     this.id = note.id;
     this.subject_id = note.subject_id;
     this.body = note.body;
@@ -78,6 +82,7 @@ class Note {
     console.log("note has been created")
     let element = {
       note: {
+        // this. refers to the global object whether in strict mode or not.
         body: this.body,
         id: this.id,
         subject_id: this.subject_id

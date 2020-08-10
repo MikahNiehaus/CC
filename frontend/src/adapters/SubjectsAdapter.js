@@ -64,7 +64,10 @@ class SubjectsAdapter {
       .then((response) => {
         response.json().then((data) => {
           console.log(data);
-          data.forEach(addSubject);
+         // data.forEach(addSubject);
+         document.getElementById("container").options.length=0;
+         const subjects = new SubjectsAdapter();
+         subjects.getSubjects();
         }).catch((err) => {
           console.log(err);
         })
@@ -110,19 +113,21 @@ function addSubject(data) {
 
 class Subject {
  // A class is a type of function, but instead of using the keyword function to initiate it,
-  // we use the keyword class, and the properties are assigned inside a constructor() method.
+ // we use the keyword class, and the properties are assigned inside a constructor() method.
   constructor(subject){
+    // this refers to the global object whether in strict mode or not.
     this.id = subject.id;
     this.body = subject.body;
- //   The constructor method is special, it is where you initialize properties, 
+  //   The constructor method is special, it is where you initialize properties, 
   //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
   //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
   }
-   // Adding a method to the constructor
+  // Adding a method to the constructor
   render(){
     console.log("Object has been created")
     let element = {
       subject: {
+        // this. refers to the global object whether in strict mode or not.
         body: this.body,
         id: this.id
       }

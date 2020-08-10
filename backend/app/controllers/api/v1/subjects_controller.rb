@@ -5,6 +5,8 @@
 # // JSON is "self-describing" and easy to understand
 
 class Api::V1::SubjectsController < ApplicationController
+
+    
     # exposes to veiw
     def index
     # @ signify instance variables, which are available in all other methods of the instance object.
