@@ -56,7 +56,7 @@ class SubjectsAdapter {
     })
     let configObj = {
       method: "POST", // requests *GET, POST, PUT, DELETE, etc.
-      headers: { "Content-Type": "application/json", "Accepts": "application/json" },    // 'Content-Type': 'application/x-www-form-urlencoded',
+      headers: { "Content-Type": "application/json", "Accepts": "application/json" },    // 'Content-Type': 'application/x-www-form-urlencoded', Headers represents a set of request/response HTTP headers. It allows for case-insensitive lookup of header by name, as well as merging multiple values of a single header.
       body: JSON.stringify(myJson)
     }
     fetch(this.baseUrl, configObj)
@@ -64,7 +64,7 @@ class SubjectsAdapter {
       .then((response) => {
         response.json().then((data) => {
           console.log(data);
-         // data.forEach(addSubject);
+         // data.forEach(addSubject); instead i will just update
          document.getElementById("container").options.length=0;
          const subjects = new SubjectsAdapter();
          subjects.getSubjects();
@@ -82,7 +82,7 @@ class SubjectsAdapter {
       method: 'PATCH',// requests *GET, POST, PUT, DELETE, etc.
       headers: {
         'content-type': 'application/json',
-           // 'Content-Type': 'application/x-www-form-urlencoded',
+           // 'Content-Type': 'application/x-www-form-urlencoded',Headers represents a set of request/response HTTP headers. It allows for case-insensitive lookup of header by name, as well as merging multiple values of a single header.
       },
 
       body: JSON.stringify({ subject }),

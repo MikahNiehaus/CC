@@ -24,7 +24,7 @@ class NotesAdapter {
     let configObj = {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accepts": "application/json" },
-         // 'Content-Type': 'application/x-www-form-urlencoded',
+         // 'Content-Type': 'application/x-www-form-urlencoded', Headers represents a set of request/response HTTP headers. It allows for case-insensitive lookup of header by name, as well as merging multiple values of a single header.
       body: JSON.stringify(data)
     }
     //it then goes to routes
@@ -39,7 +39,13 @@ class NotesAdapter {
     fetch(this.baseUrl).then((response) => {
       response.json().then((data) => {
         console.log(data);
-        data.forEach((item) => addNoteFunction(item, id));
+        //instance of object
+        const cc = new CC("");
+        //The forEach() method executes a provided function once for each array element
+        data.forEach((item) => addNoteFunction(item, id, cc));
+        let output = cc.render();
+        const copyStringToClipboard = new CopyStringToClipboard(output);
+        copyStringToClipboard.render();
         window.open('https://www.office.com/launch/word?auth=1', '_blank');
       }).catch((err) => {
         console.log(err);
@@ -50,17 +56,39 @@ class NotesAdapter {
 
 
 }
-function addNoteFunction(item, id) {
+
+class CC {
+  // A class is a type of function, but instead of using the keyword function to initiate it,
+  // we use the keyword class, and the properties are assigned inside a constructor() method.
+   constructor(body){
+     // this. refers to the global object whether in strict mode or not.
+    //instance that the method is called on/ refers to object
+    this.body = body;
+    this.output = "";
+  //   The constructor method is special, it is where you initialize properties, 
+  //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
+  //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+   }
+   addCC(body){
+     // this. refers to the global object whether in strict mode or not.
+   this.output += body + "\n\n";
+   }
+   render(){
+   // this. refers to the global object whether in strict mode or not.
+    return this.output;
+   }
+}
+
+function addNoteFunction(item, id, cc) {
   let resolt = "";
   const note = new Note(item);
   let element = note.render();
   let subject_id = element["note"]["subject_id"];
   let body = element["note"]["body"];
   if (subject_id == id) {
-    resolt += body + "\n\n";
-
-    const copyStringToClipboard = new CopyStringToClipboard(resolt);
-    copyStringToClipboard.render();
+    resolt += body;
+  cc.addCC(resolt);
+  
   }
  
 }
@@ -69,7 +97,8 @@ class Note {
   // A class is a type of function, but instead of using the keyword function to initiate it,
   // we use the keyword class, and the properties are assigned inside a constructor() method.
   constructor(note){
-    // this refers to the global object whether in strict mode or not.
+    // this. refers to the global object whether in strict mode or not.
+    //instance that the method is called on/ refers to object
     this.id = note.id;
     this.subject_id = note.subject_id;
     this.body = note.body;

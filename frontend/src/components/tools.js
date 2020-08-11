@@ -8,6 +8,10 @@
 // A function in JavaScript is similar to a procedure—a set of statements that performs a task or calculates a value,
 //  but for a procedure to qualify as a function, it should take some input and return an output where there is some obvious
 //   relationship between the input and the output. To use a function, you must define it somewhere in the scope from which you wish to call it.
+//#AJAX?
+// AJAX = Asynchronous JavaScript And XML.
+// AJAX is not a programming language.
+// rquest to server without reloading
 
 function greet() {
 //Creates a JavaScript Date instance that represents a single moment in time in a platform-independent format. 
@@ -66,8 +70,9 @@ class CopyStringToClipboard {
     // Remove temporary element
     document.body.removeChild(el);
     //says "CC added to Clipboard!"
+    //creats A Brand New instance of Object Gets Created
     const speek = new Speek("CC added to Clipboard!");
-    speek.render();
+    speek.render();//calls object method
      }
    
    

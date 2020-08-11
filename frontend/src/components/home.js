@@ -1,7 +1,4 @@
 // #####NOTES#####
-//#const
-// The keyword const does NOT define a constant value. It defines a constant reference to a value.
-// Because of this, we cannot change constant primitive values, but we can change the properties of constant objects. (Array example)
 //#new/instance
 // An “instance” means a reference to an “object” created by “new” or the equivalent.
 //#functiuon
@@ -11,105 +8,143 @@
 //#AJAX?
 // AJAX = Asynchronous JavaScript And XML.
 // AJAX is not a programming language.
+// rquest to server without reloading
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Starting Up!")
-  //The new operator lets developers create an instance of a user-defined object type or of one of the built-in object types that has a constructor function.
+  //A Brand New instance of Object Gets Created called subjects
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const subjects = new SubjectsAdapter();
-  subjects.getSubjects();
-  greet();
+  //calls object method getSubjects()
+  subjects.getSubjects(); //updates the subjects
+  //calls function greet()
+  greet(); //it will say a greating dependent on time of day
 });
 
 
 function openCCFunction() {
-  if (document.getElementById("container").value == "") {
+  // (if) to specify a block of code to be executed, if a specified condition is true
+  // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  if (document.getElementById("container").value == "")//makes sure that i am selecting somthing
+   {
     alert('Please select somthing.');
-    return;
+    return;//exists the openCCFunction() function
   }
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const x = document.getElementById("container").selectedIndex;
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const x = document.getElementById("container").selectedIndex; // gets the selected item num
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const y = document.getElementById("container").options;
+   //creates Variable defined with const (It defines a constant reference to a value.)
+  const y = document.getElementById("container").options;// gets the container options
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  document.getElementById("cc-body").value = "";
-  let id = y[x].id;
-  const notes = new NotesAdapter();
-  notes.getNotes(id);
+  document.getElementById("cc-body").value = ""; // clears cc text
+  //creates Variable defined with let (let variables can be reassigned)
+  let id = y[x].id; //gets id of selected option
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
+  const notes = new NotesAdapter(); //news up NotesAdapter()
+  notes.getNotes(id);//calls object method
 }
 
 function addCCFunction() {
-  if (document.getElementById("container").value == "") {
+  // (if) to specify a block of code to be executed, if a specified condition is true
+  // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  if (document.getElementById("container").value == "")//makes sure that i am selecting somthing
+   {
     alert('Please select somthing.');
-    return;
+    return;//exists the function addCCFunction()
   }
-  //gets all the text i need
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  let cc_body = document.getElementById("cc-body").value;
-  //now I'm going to edit the body
-  cc_body = editBody(cc_body);
-  //now im going to copy the text to clipboard
-  //copyStringToClipboard(cc_body);
-  //add it to text
+  //creates Variable defined with let (let variables can be reassigned)
+  let cc_body = document.getElementById("cc-body").value;//gets cc text bar txt
+ //calls function
+  cc_body = editBody(cc_body);  //now I'm going to edit the body
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const x = document.getElementById("container").selectedIndex;
- 
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const x = document.getElementById("container").selectedIndex;//gets the selected item num
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const y = document.getElementById("container").options;
-  let id = y[x].id; //0
-  //const y = document.getElementById("edit-subject-body").value;
-  const notes = new NotesAdapter();
-  notes.createNote(cc_body, id);
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const y = document.getElementById("container").options;//gets options
+  //creates Variable defined with let (let variables can be reassigned)
+  let id = y[x].id; //gets selected option by index
+  //A Brand New instance of Object Gets Created
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const notes = new NotesAdapter(); //news up NotesAdapter()
+  notes.createNote(cc_body, id); //calls object method
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   document.getElementById("cc-body").value = "";
-  const speek = new Speek("CC added!");
-  speek.render();
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
+  const speek = new Speek("CC added!");// just says the text
+  speek.render(); //calls object method
 }
 
-
-const subjectButton = document.querySelector('#subjectButton');
+// The Document method querySelector() returns the first Element within the document that matches the specified selector,
+//  or group of selectors. If no matches are found, null is returned.
+//creates Variable defined with const (It defines a constant reference to a value.)
+  const subjectButton = document.querySelector('#subjectButton');//stuff im going to use in subjectButton.onclick
 const btnRemove = document.querySelector('#btnRemove');
 const subject_body = document.querySelector('#subject-body');
-
+//The Event interface's preventDefault() method tells the user agent that if the event does not get explicitly handled
 subjectButton.onclick = (e) => {
-  e.preventDefault();
-  // validate the option
-  if (subject_body.value == '') {
+  e.preventDefault(); //creates subject
+  // (if) to specify a block of code to be executed, if a specified condition is true
+  if (subject_body.value == '')// has subject name
+   {
     alert('Please enter the subject name.');
-    return;
+    return; //exits 
   }
-  if (!document.querySelector('#cc-body').value == "") {
+  // (if) to specify a block of code to be executed, if a specified condition is true
+  if (!document.querySelector('#cc-body').value == "") // reminder to add cc
+   {
     alert('Remember to add the CC.');
   }
-  const subjects = new SubjectsAdapter();
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
+  const subjects = new SubjectsAdapter();// news up SubjectsAdapter()
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  subjects.createSubject(document.getElementById("subject-body").value);
-  document.getElementById("subject-body").value = "";
-  const speek = new Speek("Subject Created!");
-  speek.render();
+  subjects.createSubject(document.getElementById("subject-body").value); //calls object method
+   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  document.getElementById("subject-body").value = "";//clears subject-body
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
+  const speek = new Speek("Subject Created!"); //just speaks text
+  speek.render();//calls object method
  // subjects.getSubjects();
 };
 
-// remove selected option
+   //The Event interface's preventDefault() method tells the user agent that if the event does not get explicitly handled
 btnRemove.onclick = (e) => {
-  e.preventDefault();
-  const selector = document.getElementById('container');
-  if (selector.selectedIndex == -1) {
+  e.preventDefault();// remove selected option
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const selector = document.getElementById('container'); //gets contaner
+  if (selector.selectedIndex == -1) //is selected
+  {
     alert('Please select somthing.');
-    return;
+    return;//exit
   }
 // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
-  const id = selector[selector.selectedIndex].id;
-  const subjects = new SubjectsAdapter();
-  subjects.deleteSubject(id);
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  const id = selector[selector.selectedIndex].id; //gets selected id
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
+  const subjects = new SubjectsAdapter();//news up
+  //calls object method
+  subjects.deleteSubject(id);//delets by id
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
   const speek = new Speek("Subject Deleted!");
-  speek.render();
+  //calls object method
+  speek.render();// speeks
 };
 
-
+//upddats the edit text
 function onContainerClick() {
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const x = document.getElementById("container").selectedIndex;
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const y = document.getElementById("container").options;
   let subject_body = y[x].text;
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
@@ -120,23 +155,35 @@ function onContainerClick() {
 function EditSubjectFunction() {
   
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const selector = document.getElementById("container");
   if (selector.value == "") {
     alert('Please select somthing.');
     return;
   }
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const id = selector[selector.selectedIndex].id;
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+  //creates Variable defined with const (It defines a constant reference to a value.)
   const y = document.getElementById("edit-subject-body").value;
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
   const subjects = new SubjectsAdapter();
-  subjects.updateSubject(y, id);
+  if (y == "") {
+    alert('Please enter somthing.');
+    return;
+  }
+  subjects.updateSubject(y, id); //calls object method
   // The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
   document.getElementById("edit-subject-body").value = "";
+  //creates Variable defined with const (It defines a constant reference to a value.)
+  //A Brand New instance of Object Gets Created
   const speek = new Speek("Subject Edited!");
-  speek.render();
+  speek.render();//calls object method
  
 }
 
+//will speek stuff
 class Speek {
  // A class is a type of function, but instead of using the keyword function to initiate it,
  // we use the keyword class, and the properties are assigned inside a constructor() method.
@@ -155,7 +202,7 @@ class Speek {
       document.getElementById("info").innerHTML = say;
       //asyncronis
       setTimeout(function(){
-   greet();
+   greet(); //it will say a greating dependent on time of day
       }, 3000);
       return (say)
     }

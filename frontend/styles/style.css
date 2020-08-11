@@ -1,3 +1,7 @@
+/* The style property is used to get as well as set the inline style of an element.
+ When getting, it returns a CSSStyleDeclaration object that contains a list of all styles properties for that element
+  with values assigned for the attributes that are defined in the element's inline style attribute. */
+
 body {
     margin: 0;
     padding: 0;
@@ -69,4 +73,4 @@ body {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
-  
+  /* map */
