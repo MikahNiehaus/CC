@@ -9,10 +9,8 @@ class Api::V1::SubjectsController < ApplicationController
     
     # exposes to veiw
     def index
-    # @ signify instance variables, which are available in all other methods of the instance object.
-    #  If in a controller you have
+   
     @subjects = Subject.all
-    # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.
     render json: @subjects.as_json(only: [:id, :body]), status: 200
     # JSON is language independent 
     end
@@ -27,11 +25,9 @@ class Api::V1::SubjectsController < ApplicationController
     end
 
     def create
-        # @ signify instance variables, which are available in all other methods of the instance object.
-        #  If in a controller you have
+        
         @subject = Subject.create(subject_params)
-        # The :only and :except options can be used to limit the attributes included, and work similar to the attributes method.
-        render json: @subjects.as_json(only: [:id, :body]), status: 200
+        render json: @subject.as_json(only: [:id, :body]), status: 200
         # JSON is language independent 
     end
  

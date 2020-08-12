@@ -44,14 +44,11 @@ function editBody(body) {
 
 
 class CopyStringToClipboard {
-    // A class is a type of function, but instead of using the keyword function to initiate it,
-    // we use the keyword class, and the properties are assigned inside a constructor() method.
+
      constructor(string){
        // this refers to the global object whether in strict mode or not.
        this.string = string;
-     //   The constructor method is special, it is where you initialize properties, 
-     //   it is called automatically when a class is initiated, and it has to have the exact name "constructor", 
-     //   in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+
      }
      // Adding a method to the constructor
      render(){
